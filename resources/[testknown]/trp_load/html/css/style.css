@@ -1,0 +1,74 @@
+html, * {
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%
+  }
+
+.square {
+    background-position: center center;
+    min-height: 100%;
+    background-size: 1920px 1080px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    transition: background-image 1000ms;
+}
+
+.k0 {
+    background-image: url("https://tassierp.com/trp_load/images/4.png");
+}
+
+.k1 {
+    background-image: url("https://tassierp.com/trp_load/images/1.png");
+
+}
+
+.k2 {
+    background-image: url("https://tassierp.com/trp_load/images/2.png");
+}
+
+.k3 {
+    background-image: url("https://tassierp.com/trp_load/images/3.png");
+}
+
+.k4 {
+    background-image: url("https://tassierp.com/trp_load/images/5.png");
+}
+
+.k5 {
+    background-image: url("https://tassierp.com/trp_load/images/6.png");
+}
+
+.k6 {
+    background-image: url("https://tassierp.com/trp_load/images/7.png");
+}
+
+.k7 {
+    background-image: url("https://tassierp.com/trp_load/images/8.png");
+}
+
+.k8 {
+    background-image: url("https://tassierp.com/trp_load/images/9.png");
+}
+
+.k9 {
+    background-image: url("https://tassierp.com/trp_load/images/10.png");
+}
+
+.k10 {
+    background-image: url("https://tassierp.com/trp_load/images/11.png");
+}
+
+.k11 {
+    background-image: url("https://tassierp.com/trp_load/images/12.png");
+}
+
+.k12 {
+    background-image: url("https://tassierp.com/trp_load/images/13.png");
+}
+
+.k13 {
+    background-image: url("https://tassierp.com/trp_load/images/14.png");
+}

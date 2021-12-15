@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>DyzCarHud</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet"> 
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+</head>
+<body>
+    <div id="allELM">
+        <div id="mainGUI">
+            <div class="container-flex">
+                <div class="column" style="margin-right: 3px;">
+                    <div style="animation: fadeInRight .75s; width: 100%; height: 100%; background: linear-gradient(to left, rgba(0, 0, 0, .5), transparent) !important;">
+                        <div class="bottomStats">
+                            <div id="gearStats">
+                                <p>GEAR: <span id="gearNum" class="active">0</span></p>
+                            </div>
+                            <div style="width: 100%; padding-right: 5px; white-space: nowrap; line-height: 40px; text-align: right;">
+                                <h1 id="numSpeed">00</h1>
+                                <span style="width: 65px; white-space: nowrap;"><span id="speedUnit">M</span>/H</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div style="animation: fadeInLeft .75s; padding-left: 10px; width: 100%; height: 100%; background: linear-gradient(to right, rgba(0, 0, 0, .5), transparent) !important;">
+                        <p id="carPanel">CONSOLE STATUS</p>
+                        <div class="statusTxt">
+                            <div id="belt" class="iconStats">
+                                <img src="img/BELT.png">
+                            </div>
+                            <div id="cruise" class="iconStats">
+                                <img src="img/cruise.png">
+                            </div>
+                            <div id="engine" class="iconStats" style="padding: 5px 0; text-align: center;">
+                                <img src="img/Engin_PS.png" style="margin-bottom: 3px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-flex">
+            <div class="column" style="margin-right: 3px;">
+                <div style="animation: fadeInRight .75s; width: 100%; height: 100%;">
+                    <div class="fuelProcess" style="background: linear-gradient(to left, rgba(0, 0, 0, .3), transparent) !important;"><div id="yeetFuel" class="yeet" style="width: 80%; margin-left: auto;"></div></div>
+                    <p style="text-align: right;">Fuel</p>
+                </div>
+            </div>
+            <div class="column">
+                <div style="animation: fadeInLeft .75s; width: 100%; height: 100%;">
+                    <div class="fuelProcess" style="background: linear-gradient(to right, rgba(0, 0, 0, .3), transparent) !important;"><div id="yeetHealth" class="yeet" style="width: 20%; background-color: var(--clr-violet);"></div></div>
+                    <p style="color: var(--clr-violet);">Car Health</p>
+                </div>
+            </div>
+        </div>
+        <div class="placeName">
+            <span id="placeName">PLACE_NAME</span>
+            <div class="bg"></div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.1/howler.min.js" type="text/javascript"></script>
+    <script>
+        var audioPlayer = null;
+        // Listen for NUI Messages.
+        window.addEventListener('message', function (event) {
+            // Check for playSound transaction
+            if (event.data.transactionType == "playSound") {
+                if (audioPlayer != null) {
+                    audioPlayer.pause();
+                }
+                audioPlayer = new Howl({
+                    src: [event.data.transactionFile + '.ogg']
+                });
+                audioPlayer.volume(event.data.transactionVolume);
+                audioPlayer.play();
+            }
+        });
+    </script>
+</body>
+
+</html>

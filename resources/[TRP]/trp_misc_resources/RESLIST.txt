@@ -1,0 +1,9 @@
+TRP_framerate
+TRP_Watercooler
+TRP_removemap_hparmor(custom commented out heaps of shit works well)
+TRP_Shuffseat
+TRP_plateremover
+TRP_brakeglow
+TRP_AUSPLATES
+TRP_lesstraffic
+TRP_IDOVERHEAD

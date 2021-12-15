@@ -1,0 +1,1 @@
+ALTER TABLE `users` ADD `landlevel` INT(4) DEFAULT 0

@@ -1,0 +1,556 @@
+<html>
+
+
+
+<head>
+
+  <link rel="stylesheet" href="styles.css" type="text/css">
+
+  <link rel="stylesheet" href="hydroui.css" type="text/css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" type="text/css">
+
+  <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+
+  <script src="script.js" type="text/javascript"></script>
+
+</head>
+
+
+
+<body>
+
+  <div class="admin-panel">
+
+    <div class="navbar" display="">
+
+      <div class="heading-box">
+
+        <h1>Tassie Administration <span>Panel</span></h1>
+
+        <h2><span>v4.2.8 </span>By The TRP Development Team</h2>
+
+        <span class="badge badge-primary mt-sm" id="admin-owner">ERROR</span>
+
+      </div>
+
+      <div class="icon-bar">
+
+        <button type="button" class="icon-btn tooltip tooltip-bottom" tooltip="Toggle Admin" id="admin-on" name="button"><i class="fas fa-user-shield"></i></button>
+
+        <button type="button" class="icon-btn tooltip tooltip-bottom" tooltip="Close" id="close-interface" name="button"><i class="fas fa-times color-white"></i></button>
+
+      </div>
+
+      <div class="navigation-menu">
+
+        <!--<button class="nav-btn font-md nav-line-ani-center-blue px-lg py-sm text-bold" id="report" page-item="report-box">Report Panel</button>-->
+
+        <button class="nav-btn font-md nav-active px-lg py-sm text-bold" id="support" page-item="ticket-box">Support Tickets</button>
+
+        <button class="nav-btn font-md nav-line-ani-center-blue px-lg py-sm text-bold" id="admin" page-item="admin-box">Administration Panel</button>
+
+      </div>
+
+    </div>
+
+    <div id="report-box" class="tab-section">
+
+      <div>
+
+        <div class="alert alert-error">
+
+  				<p class="text-bold"></p>
+
+  			</div>
+
+        <textarea class="message" name="message" id="report-message" rows="10" placeholder="You may begin by typing your report here." style="width:100%; resize: none;"></textarea>
+
+        <button type="button" class="btn-primary btn-outline" id="btn-submit-report" name="button">Submit Report</button>
+
+      </div>
+
+    </div>
+
+    <div id="ticket-box" class="tab-section tab-active">
+
+      <div class="ticket-checker">
+
+        <div>
+
+          <img src="https://media1.tenor.com/images/c32c5fa4acb60cfedb0cf605862fa944/tenor.gif?itemid=12788383" alt="Nothing to see here" style="border-radius: 16px;">
+
+          <h3>There are currently no open tickets at the moment. Good work!</h3>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div id="admin-box" class="tab-section">
+
+      <div class="row">
+
+        <!--<div id="admin-24" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-24" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-25" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-26" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-27" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-28" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-29" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-30" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-31" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-32" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-33" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-34" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-35" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-36" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-37" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-38" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-39" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-40" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-41" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-42" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-43" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-44" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-45" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-46" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-47" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-48" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-49" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-50" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-51" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-52" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-53" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-54" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-55" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-56" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-57" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-58" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-59" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-60" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-61" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-62" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-63" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-64" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+        <div id="admin-65" class="col-3"><div class="player-box py-md mx-sm">
+
+          <div class='profile-box'><img src='img/user.png'>
+
+            <div class='details mb-sm'><span class='username color-grey-2'>Virgin Police</span><span id='user-id' class='badge badge-success ml-sm'>69</span></div>
+
+          </div>
+
+        </div></div>
+
+      </div>
+
+          <div class="nothing-checker">
+
+            <div>
+
+              <img src="img/working.png" alt="Nothing to see here">
+
+              <h3>Uhh, well this is awkward. 😅 This is still uhh, under construction. 👷</h3>
+
+            </div>
+
+          </div>-->
+
+        </div>
+
+      </div>
+
+</body>
+
+
+
+<footer>
+
+  <script src="https://snipes-murphy.github.io/HydroUI/hydroui.js"></script>
+
+</footer>
+
+
+
+</html>
+

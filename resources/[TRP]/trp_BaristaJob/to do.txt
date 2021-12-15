@@ -1,0 +1,13 @@
+Add a society fund
+Make sure the items the barista uses are no longer infinite
+finish the add cocaine merge item together so all varients of coffees can be make with a cocaine equivilent 
+add storage so the player can take out example 5x milk and then they have to replace it....
+
+make a blip that detects a player that is not barista that shows them coffee menu and then
+when they select a coffee ping the player that is Barista with a message that tells them what the order is
+charge the player when they order the coffee and give the barista part of the payment when complete or
+add a menu that when the player orders takes the players money and then barista has coffee menu that says sell coffee
+and when the player sells the coffee it gives the xplayer the coffee and the barista partial payment
+
+
+Fix Rob Fridge as it currently ignores the citizen.wait... i don't know why.. 

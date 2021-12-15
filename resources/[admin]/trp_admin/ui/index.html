@@ -1,0 +1,340 @@
+<html>
+
+<head>
+	<link rel="stylesheet" type="text/css" href="hydroui.css">
+	<link rel="stylesheet" href="style.css">
+	<script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+	<script src='all.js'></script>
+
+	<style>#admin,#exist,#server { display: none; }</style>
+<script type="text/javascript">
+var visable = false;
+$(function () {
+	window.addEventListener('message', function (event) {
+		switch (event.data.action) {
+			case 'toggle':
+				if (visable) {
+					$('#wrap').fadeOut();
+				} else {
+					$('#wrap').fadeIn();
+				}
+				visable = !visable;
+				break;
+			case 'close':
+				$('#wrap').fadeOut();
+				visable = false;
+				break;
+			case 'toggleID':
+				if (event.data.state) {
+					$('td:nth-child(2),th:nth-child(2)').show();
+					$('td:nth-child(5),th:nth-child(5)').show();
+					$('td:nth-child(8),th:nth-child(8)').show();
+					$('td:nth-child(11),th:nth-child(11)').show();
+				}
+				break;
+			case 'updatePlayerJobs':
+				var jobs = event.data.jobs;
+				$('#player_count').html(jobs.player_count);
+				$('#ems').html(jobs.ems);
+				$('#police').html(jobs.police);
+				$('#taxi').html(jobs.taxi);
+				$('#mechanic').html(jobs.mechanic);
+				/* $('#slaughterer').html(jobs.slaughterer);
+				$('#fueler').html(jobs.fueler);
+				$('#lumberjack').html(jobs.lumberjack);
+				$('#tailor').html(jobs.tailor); */
+				$('#reporter').html(jobs.reporter);
+				$('#sheriff').html(jobs.sheriff);
+				/* $('#miner').html(jobs.miner); */
+				$('#estate').html(jobs.estate);
+				$('#cardeal').html(jobs.cardeal);
+				$('#arma').html(jobs.arma);
+				$('#stato').html(jobs.stato);
+				$('#unemployed').html(jobs.unemployed);
+				break;
+			case 'updatePlayerList':
+				$('#playerlist tr:gt(0)').remove();
+				$('#playerlist').append(event.data.players);
+				applyPingColor();
+				//sortPlayerList();
+				break;
+			case 'updatePing':
+				updatePing(event.data.players);
+				applyPingColor();
+				break;
+			case 'updateServerInfo':
+				if (event.data.maxPlayers) {
+					$('#max_players').html(event.data.maxPlayers);
+				}
+
+				if (event.data.uptime) {
+					$('#server_uptime').html(event.data.uptime);
+				}
+
+				if (event.data.playTime) {
+					$('#play_time').html(event.data.playTime);
+				}
+				break;
+				default:
+				console.log(makeid(15));
+				break;
+		}
+	}, false);
+});
+
+function makeid(length) {
+   var result           = '';
+   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+   var charactersLength = characters.length;
+   for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+   }
+   return result;
+}
+function applyPingColor() {
+	$('#playerlist tr').each(function () {
+		$(this).find('td:nth-child(3),td:nth-child(6),td:nth-child(9),td:nth-child(12)').each(function () {
+			var ping = $(this).html();
+			var color = 'green';
+
+			if (ping > 150 && ping < 300) {
+				color = 'orange';
+			} else if (ping >= 300) {
+				color = 'red';
+			}
+			$(this).css('color', color);
+			$(this).html(ping + " <span style='color:white;'>ms</span>");
+		});
+	});
+}
+// Todo: not the best code
+function updatePing(players) {
+	jQuery.each(players, function (index, element) {
+		if (element != null) {
+			$('#playerlist tr:not(.heading)').each(function () {
+				$(this).find('td:nth-child(2):contains(' + element.id + ')').each(function () {
+					$(this).parent().find('td').eq(2).html(element.ping);
+				});
+				$(this).find('td:nth-child(5):contains(' + element.id + ')').each(function () {
+					$(this).parent().find('td').eq(5).html(element.ping);
+				});
+				$(this).find('td:nth-child(8):contains(' + element.id + ')').each(function () {
+					$(this).parent().find('td').eq(8).html(element.ping);
+				});
+				$(this).find('td:nth-child(11):contains(' + element.id + ')').each(function () {
+					$(this).parent().find('td').eq(11).html(element.ping);
+				});
+			});
+		}
+	});
+}
+function sortPlayerList() {
+	var table = $('#playerlist'),
+		rows = $('tr:not(.heading)', table);
+	rows.sort(function(a, b) {
+		var keyA = $('td', a).eq(1).html();
+		var keyB = $('td', b).eq(1).html();
+
+		return (keyA - keyB);
+	});
+	rows.each(function(index, row) {
+		table.append(row);
+	});
+}
+</script>
+<!--ADMIN SRC START-->
+<script type="text/javascript">
+		let selected = 0;
+		$(function () {
+			$(document).keyup(function (e) {
+				if (e.keyCode == 27) {
+					$("#admin").fadeOut();
+					$.post('https://trp_admin/close', JSON.stringify({}));
+				}
+			});
+			$(document).keyup(function (e) {
+				if (e.keyCode == 36) {
+					$("#admin").fadeOut();
+					$.post('https://trp_admin/close', JSON.stringify({}));
+				}
+			});                  
+			window.addEventListener('message', function (event) {
+				if (event.data.type == "open") {
+					$('#notexist').css('display', 'block');
+					$('#exist').css('display', 'none');
+					$("#admin").fadeIn();
+					$('input').val("");
+					$('#list').empty()
+        $('#list').append('<input type="text" class="user-filter" placeholder="Search Players">') // Player Filter Function
+        for(let i in event.data.players){
+	let player = event.data.players[i];
+	    $('#list').append('<div class="player" id="player_' + player.id + '"></div>'); // XSS Patched
+	    $('#player_' + player.id).text(player.id + ' - ' + player.name );
+
+    }
+        $(document).on("keyup", ".user-filter", function(element) {
+    var value = $(this).val(); // JS local
+    $("#list > .player").each(function() {
+	console.log(($(this).data("id"))); // Prints ID in console
+	if ($(this).text().search(value) > -1 || $(this).data("id") == value) {
+		$(this).show();
+	}
+	else {
+		$(this).hide();
+	    }
+    });
+})
+$(".player").click(function () {
+        let id = $(this).attr('id').replace('player_', '');
+        selected = parseInt(id);
+	    $('.player').removeClass('selected');
+		$(this).addClass('selected');
+		$('#exist').find('h1').text($(this).text());
+		$('#notexist').css('display', 'none');
+		$('#exist').css('display', 'block');
+	    });
+	}
+});
+			$("#close").click(() => {
+				$("#admin").fadeOut();
+				$.post('https://trp_admin/close', JSON.stringify({}));
+			});
+			$("#select_users").click(() => {
+				$('#server').css('display', 'none');
+				$('#users').css('display', 'block');
+				$(".tab").removeClass("selected");
+				$("#select_users").addClass("selected");
+				$("#select_users").blur();
+			});
+			$("#select_server").click(() => {
+				$('#users').css('display', 'none');
+				$('#server').css('display', 'block');
+			$(".tab").removeClass("selected");
+				$("#select_server").addClass("selected");
+				$("#select_server").blur();
+				$("#veston").click(function () { $.post('https://trp_admin/quick', JSON.stringify({ id: selected, type: 'veston' })); $(this).blur(); });
+			});
+			$("#select_server1").click(function () { $.post('https://trp_admin/quick', JSON.stringify({ id: selected, type: 'veston' })); $(this).blur(); });
+			$("#vestoff").click(function () { $.post('https://trp_admin/quick', JSON.stringify({ id: selected, type: 'vestoff' })); $(this).blur(); });
+			$("#slap_all").click(function () { $.post('https://trp_admin/quick', JSON.stringify({ id: selected, type: 'slap_all' })); $(this).blur(); });
+			$("#slay").click(function () { $.post('https://trp_admin/quick', JSON.stringify({ id: selected, type: 'slay' })); $(this).blur(); });
+			$("#kick").click(function () { $.post('https://trp_admin/quick', JSON.stringify({ id: selected, type: 'kick' })); $(this).blur(); });
+			$("#screenshot").click(function () { $.post('https://trp_admin/quick', JSON.stringify({ id: selected, type: 'screenshot' })); $(this).blur(); });
+			$("#spectate").click(function () { $.post('https://trp_admin/quick', JSON.stringify({ id: selected, type: 'spectate' })); $(this).blur(); });
+			$("#freeze").click(function () { $.post('https://trp_admin/quick', JSON.stringify({ id: selected, type: 'freeze' })); $(this).blur(); });
+			$("#bring").click(function () { $.post('https://trp_admin/quick', JSON.stringify({ id: selected, type: 'bring' })); $(this).blur(); });
+			$("#goto").click(function () { $.post('https://trp_admin/quick', JSON.stringify({ id: selected, type: 'goto' })); $(this).blur(); });
+			$("#setgroup").click(function () { $.post('https://trp_admin/set', JSON.stringify({ user: selected, type: 'group', param: $("#newgroup").val() })); $(this).blur(); });
+			$("#setlevel").click(function () { $.post('https://trp_admin/set', JSON.stringify({ user: selected, type: 'level', param: $("#newlevel").val() })); $(this).blur(); });
+			$("#setkickreason").click(function () { $.post('https://trp_admin/set', JSON.stringify({ user: selected, type: 'kickreason', param: $("#newkickreason").val() })); $(this).blur(); });
+			$("#setbank").click(function () { $.post('https://trp_admin/set', JSON.stringify({ user: selected, type: 'bank', param: $("#newbank").val() })); $(this).blur(); });
+			$('button').click(function () { $(this).blur(); });
+		});
+	</script>
+</head>
+<body>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<style> 
+    input[type=text] {
+        width: 100%;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        font-size: 16px;
+        background-color: white;
+        background-image: url('searchicon.png');
+        background-position: 10px 10px; 
+        background-repeat: no-repeat;
+        padding: 12px 20px 12px 40px;
+		-webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+    }
+    .ytube {
+        width: 90%;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        font-size: 16px;
+        background-color: white;
+        background-image: url('arrow.png');
+        background-position: 10px 10px; 
+        background-repeat: no-repeat;
+        padding: 12px 20px 12px 40px;
+		-webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+    }
+</style>
+	<script type="text/javascript">
+		window.onload=function(){      
+		$("#filter").keyup(function() {
+	
+		  var filter = $(this).val(),
+			count = 0;
+	
+		  $('#results div').each(function() {
+	
+			if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+			  $(this).hide();
+	
+			} else {
+			  $(this).show();
+			  count++;
+			} }); }); }
+		</script>
+<div id="admin">
+	<div class="topbar">
+		<p class= noselect>TassieRP - Staff Menu</p> 
+		<div id="close" >&#10060;</div>
+		<button type="button" class="icon-btn" id="select_server1" name="button"><i class="fas fa-user-shield"></i></button> <!-- STUPID FUCKING SHIELD ICON LMAO -->
+		<div class="navbar"> <!-- PlaceHolder NavBar -->
+		</div> </div>	
+		<div id="main" style="margin-right: 30px">
+			<div id="users">
+				<div id="list">	
+				</div>
+				<div id="selected">
+					<div id="notexist">
+						<h3 class= noselect style="text-align:center;">Player Count</h3>
+						<div class="serverinfo">
+							Players: <span id="player_count">0</span> / <span id="max_players">0</span> <span style="font-size: 1.2vw">|</span>
+							Play time: <span id="play_time">00h 00m</span>
+						</div>
+					</div>
+					<div id="exist">
+						<h1>TassieRP</h1> <!-- 
+							FUCKING CALLS FOR PLAYER ID AND NAME IN HEADER DONT REMOVE LMAO
+						-->
+						<div id="quick">
+							<h3 class="noselect">Quick Options</h3>
+							<button class="quick" id="slay">Slay</button>
+							<button class="quick" id="screenshot">Screenshot</button>
+							<button class="quick" id="spectate">Spectate</button>
+							<button class="quick" id="freeze">Freeze</button>
+							<button class="quick" id="bring">Bring</button>
+							<button class="quick" id="goto">Goto</button>
+						</div>
+						
+						<div id="set">
+							<h3 class= noselect>Attributes</h3>
+							<div class="group_set">
+								<label>Group</label>
+								<input id="newgroup" type="text" placeholder="new group"></input>
+								<button id="setgroup">Set</button>
+							</div>
+							<div class="group_set">
+								<label>Permission Level</label>
+								<input id="newlevel" type="text" placeholder="new level"></input>
+								<button id="setlevel">Set</button>
+							</div>
+							<div class="group_set">
+								<label>Kick</label>
+								<input id="newkickreason" type="text" placeholder="Reason"></input>
+								<button id="setkickreason">Kick Player</button>
+							</div>
+							<div class="group_set">
+								<label>Bank</label>
+								<input id="newbank" type="text" placeholder="new bank"></input>
+								<button id="setbank">Set</button> </div></div></div></div></div>
+                </body>
+
+</html>

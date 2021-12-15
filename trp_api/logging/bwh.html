@@ -1,0 +1,169 @@
+<html>
+  
+<head>
+    <meta charset="UTF-8">
+    <title>Banning</title>
+  
+    <!-- INCLUDING JQUERY-->
+    <script src=
+"https://code.jquery.com/jquery-3.5.1.js">
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+        </style> 
+   <style>
+        table {
+            margin: 0 auto;
+            font-size: large;
+            position: relative;
+            width: auto; /* Full-width */
+            border-radius:10px;
+            padding-bottom: 56.25%;
+            font-family: 'Roboto', sans-serif;
+        }
+        h1 {
+            text-align: center;
+            color: #006600;
+            font-size: xx-large;
+            font-family: 'Roboto', sans-serif;
+        }
+  
+        td {
+            background-color: #E4F5D4;
+            border: 1px solid black;
+            
+        }
+        
+        ph {
+            font-weight: bold;
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+          
+        }
+        th,
+        td {
+            font-weight: bold;
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+         
+            
+        }
+        
+  
+        td {
+            font-weight: lighter;
+        }
+    </style>
+    <!-- CSS FOR STYLING THE PAGE -->
+   
+</head>
+  
+<body>
+    <section>
+        <h1>TRP Bans</h1>
+        
+        <!-- TABLE CONSTRUCTION-->
+
+        <table id='table'>
+            <input type="text" id="myInput" placeholder="Search">
+            <!-- HEADING FORMATION -->
+            <tr>
+                <th>ID:</th>
+                <th>Receiver:</th>
+                <th>Sender:</th>
+                <th>Length:</th>
+                <th>Reason:</th>
+                <th>Unbanned:</th>
+            </tr>
+	
+            <style>#myInput {
+                background-image: url('https://icons.iconarchive.com/icons/ampeross/qetto-2/32/search-icon.png'); /* Add a search icon to input */
+                background-position: 10px 5px; /* Position the search icon */
+                background-repeat: no-repeat; /* Do not repeat the icon image */
+                width: 10%; /* Full-width */
+                font-size: 16px; /* Increase font-size */
+                padding: 12px 0px 12px 0px; /* Add some padding */
+                border: 3px solid gray;
+                border:2px solid rgb(134, 170, 187);
+                margin-left: auto;
+                margin-right: auto;
+                text-align:center;
+                margin-bottom: 12px; /* Add some space below the input */
+                border-radius:10px;
+                
+              } 
+              #myInput:focus{
+                outline:none;
+    border-color:rgb(70, 70, 219);
+    box-shadow:0 0 10px rgb(197, 197, 206);
+                
+              }</style>
+           
+            <script>
+                $(document).ready(function () {
+  
+                    // FETCHING DATA FROM JSON FILE
+                    $.getJSON("https://tassierp.com/trp_api/data/json/bwh_bans.json", 
+                            function (data) {
+                        var trp_bans = '';
+  
+                        // ITERATING THROUGH OBJECTS
+                        $.each(data, function (key, value) {
+  
+                            //CONSTRUCTION OF ROWS HAVING
+                            // DATA FROM JSON OBJECT
+                            trp_bans += '<tr>';
+                            trp_bans += '<td>' + 
+                                value.id + '</td>';
+  
+                            trp_bans += '<td>' + 
+                                value.receiver + '</td>';
+  
+                            trp_bans += '<td>' + 
+                                value.sender + '</td>';
+  
+                            trp_bans += '<td>' + 
+                                value.length + '</td>';
+  
+                            trp_bans += '<td>' + 
+                                value.reason + '</td>';
+                            trp_bans += '<td>' + 
+                                value.unbanned + '</td>';
+                            trp_bans += '</tr>';
+                        });
+                          
+                        //INSERTING ROWS INTO TABLE 
+                        $('#table').append(trp_bans);
+                    });
+                });
+                
+            </script>
+            
+             <script>
+               function filterTable(event) {
+                var filter = event.target.value.toUpperCase();
+                var rows = document.querySelector("#table").rows;
+                    for (var i = 1; i < rows.length; i++) {
+                        var zeroCol = rows[i].cells[0].textContent.toUpperCase();
+                        var firstCol = rows[i].cells[1].textContent.toUpperCase();
+                        var secondCol = rows[i].cells[2].textContent.toUpperCase();
+                        var thirdCol = rows[i].cells[3].textContent.toUpperCase();
+                        var forthCol = rows[i].cells[4].textContent.toUpperCase();
+                        var fifthCol = rows[i].cells[5].textContent.toUpperCase();
+                        if (zeroCol.indexOf(filter) > -1 || firstCol.indexOf(filter) > -1 || secondCol.indexOf(filter) > -1 || thirdCol.indexOf(filter) > -1 || forthCol.indexOf(filter) > -1 || fifthCol.indexOf(filter) > -1) {
+                            rows[i].style.display = "";
+                        } else {
+            rows[i].style.display = "none";
+        }      
+    }
+}
+
+document.querySelector('#myInput').addEventListener('keyup', filterTable, false);
+			</script>
+                
+    </section>
+</body>
+  
+</html>

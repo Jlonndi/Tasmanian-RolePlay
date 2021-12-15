@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Tassie RP load</title>
+  <link rel="stylesheet" href="./css/style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="square" id="square1">
+  </div>
+<!-- partial -->
+  <script  src="./js/script.js"></script>
+
+  <script type="text/javascript">
+    var numberOfSongs = 29
+    var sound = new Array(numberOfSongs+1)
+    sound[0]= "https://tassierp.com/trp_load/track01.mp3"
+    sound[1]= "https://tassierp.com/trp_load/track02.mp3"
+    sound[2]= "https://tassierp.com/trp_load/track03.mp3"
+    sound[3]= "https://tassierp.com/trp_load/track04.mp3"
+    sound[4]= "https://tassierp.com/trp_load/track05.mp3"
+    sound[5]= "https://tassierp.com/trp_load/track06.mp3"
+    sound[6]= "https://tassierp.com/trp_load/track07.mp3"
+    sound[7]= "https://tassierp.com/trp_load/track08.mp3"
+    sound[8]= "https://tassierp.com/trp_load/track09.mp3"
+    sound[9]= "https://tassierp.com/trp_load/track10.mp3"
+    sound[10]= "https://tassierp.com/trp_load/track11.mp3"
+    sound[11]= "https://tassierp.com/trp_load/track12.mp3"
+    sound[12]= "https://tassierp.com/trp_load/track13.mp3"
+    sound[13]= "https://tassierp.com/trp_load/track14.mp3"
+    sound[14]= "https://tassierp.com/trp_load/track15.mp3"
+    sound[15]= "https://tassierp.com/trp_load/track16.mp3"
+    sound[16]= "https://tassierp.com/trp_load/track17.mp3"
+    sound[17]= "https://tassierp.com/trp_load/track18.mp3"
+    sound[18]= "https://tassierp.com/trp_load/track19.mp3"
+    sound[19]= "https://tassierp.com/trp_load/track20.mp3"
+    sound[20]= "https://tassierp.com/trp_load/track21.mp3"
+    sound[21]= "https://tassierp.com/trp_load/track22.mp3"
+    sound[22]= "https://tassierp.com/trp_load/track23.mp3"
+    sound[23]= "https://tassierp.com/trp_load/track24.mp3"
+    sound[24]= "https://tassierp.com/trp_load/track25.mp3"
+    sound[25]= "https://tassierp.com/trp_load/track26.mp3"
+    sound[26]= "https://tassierp.com/trp_load/track27.mp3"
+    sound[27]= "https://tassierp.com/trp_load/track28.mp3"
+    sound[28]= "https://tassierp.com/trp_load/track29.mp3"
+    sound[29]= "https://tassierp.com/trp_load/track30.mp3"
+  
+  
+  
+  
+    function randomNumber()
+    {
+    var randomLooper = -1
+    while (randomLooper < 0 || randomLooper > numberOfSongs || isNaN(randomLooper)){ randomLooper = parseInt(Math.random()*(numberOfSongs+1))
+    }
+    return randomLooper
+    }
+    
+    
+    var soundFile = sound[randomNumber ()]
+        document.writeln ('<BGSOUND SRC="' + soundFile + '" loop=5>');
+        document.writeln ('<EMBED SRC= "' + soundFile + '" loop=5 PLAYCOUNT=3 hidden=true autostart=true><P>');
+            
+  </script>
+
+
+</body>
+</html>

@@ -1,0 +1,1 @@
+INSERT INTO `items` (`name`, `label`, `weight`, `rare`, `can_remove`) VALUES ('turtlebait', 'Turtle Bait', 3, 0, 1);

@@ -1,0 +1,117 @@
+@font-face {
+  font-family: 'Circular';
+  src: url("fonts/Circular-Bold.woff2") format("woff2"), url("fonts/Circular-Bold.woff") format("woff"), url("fonts/Circular-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Circular';
+  src: url("fonts/Circular-Book.woff2") format("woff2"), url("fonts/Circular-Book.woff") format("woff"), url("fonts/Circular-Book.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+
+* {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+body {
+  font-family: 'Circular', sans-serif;
+  font-weight: normal;
+  overflow: hidden;
+  height: 100%; }
+
+a {
+  display: block;
+  text-decoration: none; }
+
+.crosshair,
+.menu-car,
+.menu-user {
+  opacity: 0; }
+
+#cursorPointer {
+  position: absolute;
+  z-index: 999999;
+  display: none; }
+  .crosshair {
+    text-align: center;
+    width: 8px;
+    height: 8px;
+    border: 1px solid rgba(34, 32, 32, 0.5);
+    border-radius: 100%;
+    position: absolute;
+    top: calc(50% - 4px);
+    left: calc(50% - 4px);
+    transition: all 0.2s ease-in-out;
+    z-index: 200; }
+
+
+.crosshair.fadeIn {
+  width: 8px;
+  height: 8px;
+  top: calc(50% - 4px);
+  left: calc(50% - 4px);
+  z-index: 200; }
+
+  .crosshair.active {
+    width: 30px;
+    height: 30px;
+    border-radius: 45%;
+    top: calc(49.2% - 8px);
+    left: calc(49.607% - 8px);
+    background: rgba(108, 118, 124, 0.486) url("https://cdn.discordapp.com/attachments/787667413759033345/808187584458522644/close.png") no-repeat 4px 4px;
+    background-size: 65%; }
+
+.menu {
+  align-items: center;
+  align-content: center;
+  height: 100%;
+  width: 100%;
+  display: none;
+  flex-wrap: wrap;
+  position: absolute;
+  top: 0;
+  z-index: 0; }
+  .menu li {
+    list-style: none;
+    width: 50%;
+    line-height: 20px;
+    box-sizing: border-box; }
+    .menu li a {
+      font-size: 18px;
+      display: inline-block;
+      color: #ffffff;
+      background: rgba(108, 118, 124, 0.486);
+      border-radius: 18px;
+      border: 1px solid rgba(34, 32, 32, 0.5);
+      padding: 10px 20px 10px 18px;
+      margin: 10px 0;
+      transition: all 0.2s ease-in-out;
+      will-change: transform; }
+      .menu li a:hover {
+        transform: scale(1.1); }
+      .menu li a .emoji {
+        font-size: 22px;
+        margin-right: 5px;
+        display: inline-block;
+        vertical-align: middle; }
+    .menu li:nth-child(odd) {
+      text-align: right;
+      right: 60px;
+      transform-origin: right center; }
+    .menu li:nth-child(even) {
+      left: 60px;
+      transform-origin: left center; }
+    .menu li:nth-child(1), .menu li:nth-last-child(2) {
+      right: 20px; }
+    .menu li:nth-child(2), .menu li:nth-last-child(1) {
+      left: 20px; }
+
+.fadeIn {
+  display: flex;
+  opacity: 1;
+  z-index: 10; }
